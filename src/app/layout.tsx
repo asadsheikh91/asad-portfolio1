@@ -16,24 +16,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={{
-          background: "#0a0f1e",
           position: "relative",
           minHeight: "100vh",
         }}
       >
-        {/* Dot grid — fixed so it covers the entire page always */}
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
-
         {/* Blue orb — top left */}
         <div
           style={{
