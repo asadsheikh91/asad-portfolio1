@@ -1,87 +1,136 @@
-import Container from "@/components/layout/Container";
-import Section from "@/components/layout/Section";
-import CodePreviewCard from "@/components/ui/CodePreviewCard";
-import PrimaryButton from "@/components/ui/PrimaryButton";
-import StatCard from "@/components/ui/StatCard";
-import TagPill from "@/components/ui/TagPill";
+"use client";
+
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+
+const ArchDiagram = dynamic(() => import("@/components/ArchDiagram"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full rounded-2xl bg-[#111827] animate-pulse" />
+  ),
+});
+
+const tickerItems = [
+  "FastAPI",
+  "PostgreSQL",
+  "Redis",
+  "Docker",
+  "LLM Integration",
+  "Real-Time Systems",
+  "JWT",
+  "RBAC",
+  "Framer Motion",
+  "GitHub Actions",
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 export default function Hero() {
+  const tickerContent = [...tickerItems, ...tickerItems];
+
   return (
-    <Section
-      id="home"
-      className="relative overflow-hidden pt-16 sm:pt-20"
-    >
-      <Container>
-        <div className="grid min-h-[85vh] items-center gap-16 lg:grid-cols-2">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 px-4 py-2 backdrop-blur-sm">
-              <span className="text-sm font-medium text-blue-300">
-                Available for opportunities
+    <section className="min-h-screen flex flex-col justify-center pt-24 pb-0 px-6">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left column */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col gap-6"
+          >
+            <motion.div variants={itemVariants}>
+              <span className="inline-flex items-center gap-2 border border-[#4FF8E5]/30 rounded-full px-4 py-1.5 text-[#4FF8E5] text-xs font-mono">
+                <span
+                  className="w-2 h-2 rounded-full bg-[#4FF8E5] animate-pulse"
+                  aria-hidden="true"
+                />
+                BACKEND ENGINEER · OPEN TO REMOTE
               </span>
-            </div>
+            </motion.div>
 
-            <div className="space-y-4">
-              <h1 className="text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-                Hi, I&apos;m
-                <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Asad Amad Sheikh
-                </span>
-              </h1>
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F4FF] leading-tight"
+            >
+              I build backends that think.
+            </motion.h1>
 
-              <div className="flex h-12 items-center gap-2">
-                <span className="text-2xl font-semibold text-gray-300 lg:text-3xl">
-                  Backend Developer
-                </span>
-                <span className="h-8 w-1 animate-pulse bg-blue-400" />
-              </div>
-            </div>
+            <motion.p
+              variants={itemVariants}
+              className="text-lg text-[#4FF8E5] font-mono"
+            >
+              Async APIs · Real-Time Systems · LLM Integration
+            </motion.p>
 
-            <p className="max-w-xl text-lg leading-relaxed text-gray-400 lg:text-xl">
-              I build scalable backend systems with FastAPI, PostgreSQL, Redis,
-              and Docker, with a focus on API design, performance, and
-              maintainable architecture.
-            </p>
+            <motion.p variants={itemVariants} className="text-[#8892A4] text-base">
+              Based in Islamabad — available for remote roles globally.
+            </motion.p>
 
-            <div className="flex flex-wrap gap-3">
-              <TagPill label="API Design" dotColor="bg-cyan-400" />
-              <TagPill label="Query Optimization" dotColor="bg-pink-400" />
-              <TagPill label="Scalable Architecture" dotColor="bg-emerald-400" />
-            </div>
-
-            <div className="flex flex-col gap-4 pt-4 sm:flex-row">
-              <PrimaryButton href="#projects">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-3 pt-1"
+            >
+              <a
+                href="#projects"
+                className="px-6 py-3 rounded-lg bg-[#4FF8E5] text-[#0A0F1E] font-semibold text-sm hover:bg-[#4FF8E5]/90 transition-colors text-center"
+              >
                 View My Work
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </PrimaryButton>
-            </div>
-          </div>
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-3 rounded-lg border border-[#4FF8E5] text-[#4FF8E5] font-semibold text-sm hover:bg-[#4FF8E5]/10 transition-colors text-center"
+              >
+                Available for Remote
+              </a>
+            </motion.div>
+          </motion.div>
 
-          <div className="space-y-8">
-            <CodePreviewCard />
-
-            <div className="grid grid-cols-3 gap-4">
-              <StatCard
-                value="2+"
-                label="Internships"
-                valueClassName="bg-gradient-to-r from-blue-400 to-cyan-400"
-              />
-              <StatCard
-                value="5+"
-                label="Projects"
-                valueClassName="bg-gradient-to-r from-purple-400 to-pink-400"
-              />
-              <StatCard
-                value="FastAPI"
-                label="Core Stack"
-                valueClassName="bg-gradient-to-r from-green-400 to-emerald-400"
-                className="text-[0.95rem]"
-              />
+          {/* Right column — Architecture Diagram */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative"
+          >
+           
+           <div className="h-[500px] lg:h-[660px] overflow-hidden">
+              <ArchDiagram />
             </div>
+          </motion.div>
+        </div>
+
+        {/* Ticker strip */}
+        <div className="mt-16 overflow-hidden border-t border-b border-[#1E2D40] py-3">
+          <div
+            style={{
+              display: "flex",
+              width: "max-content",
+              animation: "ticker 28s linear infinite",
+              willChange: "transform",
+            }}
+          >
+            {tickerContent.map((item, i) => (
+              <span
+                key={i}
+                className="font-mono text-sm text-[#8892A4] whitespace-nowrap"
+                style={{ padding: "0 20px" }}
+              >
+                {item}
+                <span style={{ marginLeft: "20px", color: "#1E2D40" }}>·</span>
+              </span>
+            ))}
           </div>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

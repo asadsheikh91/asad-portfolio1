@@ -3,8 +3,54 @@ import type { Metadata } from "next";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "Asad Portfolio",
-  description: "Backend Developer Portfolio",
+  title: "Asad Amad Sheikh — Backend Engineer",
+  description: "Backend Engineer specialising in FastAPI, Node.js, and LLM integration. Building async APIs, real-time systems, and AI-powered backends. Open to remote roles globally.",
+  keywords: [
+    "Backend Engineer",
+    "FastAPI Developer",
+    "Python Developer",
+    "Node.js Developer",
+    "API Development",
+    "LLM Integration",
+    "Real-Time Systems",
+    "Remote Backend Developer",
+    "Asad Amad Sheikh",
+    "Software Engineer Pakistan",
+  ],
+  authors: [{ name: "Asad Amad Sheikh" }],
+  creator: "Asad Amad Sheikh",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://asadamadsh.me",
+    title: "Asad Amad Sheikh — Backend Engineer",
+    description: "Backend Engineer specialising in FastAPI, Node.js, and LLM integration. Building async APIs, real-time systems, and AI-powered backends. Open to remote roles globally.",
+    siteName: "Asad Amad Sheikh Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Asad Amad Sheikh — Backend Engineer",
+    description: "Backend Engineer specialising in FastAPI, Node.js, and LLM integration. Open to remote roles globally.",
+    creator: "@asadamadsheikh",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://asadamadsh.me",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
@@ -71,7 +117,6 @@ export default function RootLayout({
           }}
         />
 
-        {/* All page content sits above the background */}
         <div style={{ position: "relative", zIndex: 1 }}>
           <SmoothScroll />
           {children}
