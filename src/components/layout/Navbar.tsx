@@ -38,7 +38,7 @@ export default function Navbar() {
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#" className="text-white font-bold text-xl tracking-tight">
-            Asad.
+            Asad Amad Sheikh
           </a>
 
           <div className="hidden md:flex items-center gap-8">
