@@ -27,14 +27,20 @@ export default function About() {
         </div>
 
         <Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 lg:gap-12 items-start max-w-4xl">
-            <div className="w-40 md:w-full aspect-square rounded-2xl overflow-hidden border border-line bg-surface shrink-0">
+          <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-start max-w-4xl">
+            {/*
+              The frame is 3:4 to match the portrait's own aspect ratio, so
+              object-cover has nothing to crop. A square frame threw away roughly
+              a third of the image height.
+            */}
+            <div className="w-56 md:w-full aspect-[3/4] rounded-2xl overflow-hidden border border-line bg-surface shrink-0">
               {photo ? (
                 <Image
                   src={photo}
                   alt="Asad Amad Sheikh"
-                  width={400}
-                  height={400}
+                  width={960}
+                  height={1280}
+                  sizes="(min-width: 768px) 300px, 224px"
                   className="w-full h-full object-cover"
                   priority={false}
                 />
