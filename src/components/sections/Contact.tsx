@@ -7,35 +7,34 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <span className="text-[#4FF8E5] font-mono text-sm uppercase tracking-widest">
-          Get In Touch
+        <span className="text-accent font-mono text-sm uppercase tracking-widest">
+          Contact
         </span>
-        <h2 className="text-4xl font-bold text-[#F0F4FF] mt-2 mb-10">
-          Let&apos;s build something serious.
-        </h2>
+        <h2 className="text-4xl font-bold text-ink mt-2 mb-6">Get in touch</h2>
+
+        <p className="text-muted text-base leading-relaxed max-w-2xl mx-auto mb-8">
+          I&apos;m looking for remote backend roles, full-time or contract. I work in UTC+5
+          and overlap comfortably with European hours, and with US mornings when a role
+          needs it. If you&apos;re hiring, the fastest way to reach me is email.
+        </p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-10"
+          className="flex justify-center mb-4"
         >
           <a
             href="mailto:asadamad81@gmail.com"
-            className="flex flex-col items-center px-8 py-4 rounded-xl bg-[#4FF8E5] text-[#0A0F1E] hover:bg-[#4FF8E5]/90 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-strong transition-colors"
           >
-            <span className="font-bold text-sm">Open to Remote Roles</span>
-            <span className="text-xs opacity-70 mt-0.5">Full-time · Async-friendly</span>
-          </a>
-          <a
-            href="mailto:asadamad81@gmail.com"
-            className="flex flex-col items-center px-8 py-4 rounded-xl border border-[#4FF8E5] text-[#4FF8E5] hover:bg-[#4FF8E5]/10 transition-colors"
-          >
-            <span className="font-bold text-sm">Available for Freelance</span>
-            <span className="text-xs opacity-70 mt-0.5">Project-based · Backend systems</span>
+            <Mail size={16} aria-hidden="true" />
+            asadamad81@gmail.com
           </a>
         </motion.div>
+
+        <p className="text-muted text-sm mb-10">I reply within a day.</p>
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -48,33 +47,34 @@ export default function Contact() {
             href="https://github.com/asadsheikh91"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[#8892A4] hover:text-[#4FF8E5] transition-colors text-sm"
+            className="flex items-center gap-2 text-muted hover:text-accent transition-colors text-sm"
           >
             <ExternalLink size={15} aria-hidden="true" />
             GitHub
           </a>
-          <span className="text-[#1E2D40]">·</span>
+          <span className="text-line">·</span>
           <a
             href="https://linkedin.com/in/asadamadsheikh"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[#8892A4] hover:text-[#4FF8E5] transition-colors text-sm"
+            className="flex items-center gap-2 text-muted hover:text-accent transition-colors text-sm"
           >
             <ExternalLink size={15} aria-hidden="true" />
             LinkedIn
           </a>
-          <span className="text-[#1E2D40]">·</span>
+          <span className="text-line">·</span>
           <a
-            href="mailto:asadamad81@gmail.com"
-            className="flex items-center gap-2 text-[#8892A4] hover:text-[#4FF8E5] transition-colors text-sm"
+            href="/cv.pdf"
+            download="Asad_Amad_Sheikh_CV.pdf"
+            className="flex items-center gap-2 text-muted hover:text-accent transition-colors text-sm"
           >
-            <Mail size={15} aria-hidden="true" />
-            asadamad81@gmail.com
+            <ExternalLink size={15} aria-hidden="true" />
+            Download CV
           </a>
         </motion.div>
 
-        <div className="border-t border-[#1E2D40] pt-6">
-          <p className="text-[#8892A4] text-xs font-mono">
+        <div className="border-t border-line pt-6">
+          <p className="text-muted text-xs font-mono">
             Asad Amad Sheikh · Islamabad, Pakistan · 2026
           </p>
         </div>

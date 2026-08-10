@@ -1,26 +1,19 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-
-const ArchDiagram = dynamic(() => import("@/components/ArchDiagram"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-full rounded-2xl bg-[#111827] animate-pulse" />
-  ),
-});
+import TerminalPane from "@/components/ui/TerminalPane";
 
 const tickerItems = [
   "FastAPI",
   "PostgreSQL",
   "Redis",
+  "SQLAlchemy",
+  "Pydantic v2",
   "Docker",
-  "LLM Integration",
-  "Real-Time Systems",
-  "JWT",
-  "RBAC",
-  "Framer Motion",
+  "Cloudflare",
+  "DigitalOcean",
   "GitHub Actions",
+  "Claude API",
 ];
 
 const containerVariants = {
@@ -37,9 +30,9 @@ export default function Hero() {
   const tickerContent = [...tickerItems, ...tickerItems];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-24 pb-0 px-6">
+    <section className="pt-32 pb-0 px-6">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left column */}
           <motion.div
             variants={containerVariants}
@@ -48,31 +41,26 @@ export default function Hero() {
             className="flex flex-col gap-6"
           >
             <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 border border-[#4FF8E5]/30 rounded-full px-4 py-1.5 text-[#4FF8E5] text-xs font-mono">
+              <span className="inline-flex items-center gap-2 border border-accent/30 rounded-full px-4 py-1.5 text-accent text-xs font-mono">
                 <span
-                  className="w-2 h-2 rounded-full bg-[#4FF8E5] animate-pulse"
+                  className="w-2 h-2 rounded-full bg-accent animate-pulse"
                   aria-hidden="true"
                 />
-                BACKEND ENGINEER · OPEN TO REMOTE
+                BACKEND ENGINEER · ISLAMABAD, UTC+5 · OPEN TO REMOTE
               </span>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F4FF] leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-ink leading-tight"
             >
-              I build backends that think.
+              I built a live product on my own, and I keep it running.
             </motion.h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-[#4FF8E5] font-mono"
-            >
-              Async APIs · Real-Time Systems · LLM Integration
-            </motion.p>
-
-            <motion.p variants={itemVariants} className="text-[#8892A4] text-base">
-              Based in Islamabad — available for remote roles globally.
+            <motion.p variants={itemVariants} className="text-muted text-base leading-relaxed max-w-xl">
+              Python and FastAPI, from schema design through deployment. Currently the sole
+              engineer on ParchiVisa — a visa-assessment platform running four
+              country-specific scoring engines in production.
             </motion.p>
 
             <motion.div
@@ -81,51 +69,37 @@ export default function Hero() {
             >
               <a
                 href="#projects"
-                className="px-6 py-3 rounded-lg bg-[#4FF8E5] text-[#0A0F1E] font-semibold text-sm hover:bg-[#4FF8E5]/90 transition-colors text-center"
+                className="px-6 py-3 rounded-lg bg-accent text-white font-semibold text-sm hover:bg-accent-strong transition-colors text-center"
               >
-                View My Work
+                See the work
               </a>
               <a
-                href="#contact"
-                className="px-6 py-3 rounded-lg border border-[#4FF8E5] text-[#4FF8E5] font-semibold text-sm hover:bg-[#4FF8E5]/10 transition-colors text-center"
+                href="/cv.pdf"
+                download="Asad_Amad_Sheikh_CV.pdf"
+                className="px-6 py-3 rounded-lg border border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors text-center"
               >
-                Available for Remote
+                Download CV
               </a>
             </motion.div>
           </motion.div>
 
-          {/* Right column — Architecture Diagram */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-           
-           <div className="h-[500px] lg:h-[660px] overflow-hidden">
-              <ArchDiagram />
-            </div>
-          </motion.div>
+          {/* Right column — static health-check capture */}
+          <div className="lg:justify-self-end lg:pt-[77px] w-full flex lg:block justify-start">
+            <TerminalPane />
+          </div>
         </div>
 
         {/* Ticker strip */}
-        <div className="mt-16 overflow-hidden border-t border-b border-[#1E2D40] py-3">
-          <div
-            style={{
-              display: "flex",
-              width: "max-content",
-              animation: "ticker 28s linear infinite",
-              willChange: "transform",
-            }}
-          >
+        <div className="ticker-mask mt-20 overflow-hidden border-t border-b border-line py-3">
+          <div className="ticker-track">
             {tickerContent.map((item, i) => (
               <span
                 key={i}
-                className="font-mono text-sm text-[#8892A4] whitespace-nowrap"
+                className="font-mono text-sm text-muted whitespace-nowrap"
                 style={{ padding: "0 20px" }}
               >
                 {item}
-                <span style={{ marginLeft: "20px", color: "#1E2D40" }}>·</span>
+                <span style={{ marginLeft: "20px", color: "var(--color-line)" }}>·</span>
               </span>
             ))}
           </div>

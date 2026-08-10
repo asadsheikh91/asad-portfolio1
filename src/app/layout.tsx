@@ -1,18 +1,36 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 
+// Instrument Sans is a true variable font — one file covers 400–700.
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-instrument-sans",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
+const description =
+  "Sole engineer on ParchiVisa, a live visa-assessment platform running four country-specific scoring engines in production. Backend engineer in Islamabad working in Python, FastAPI, and PostgreSQL, from schema design through deployment. Open to remote roles.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://asadamadsh.me"),
   title: "Asad Amad Sheikh — Backend Engineer",
-  description: "Backend Engineer specialising in FastAPI, Node.js, and LLM integration. Building async APIs, real-time systems, and AI-powered backends. Open to remote roles globally.",
+  description,
   keywords: [
     "Backend Engineer",
     "FastAPI Developer",
     "Python Developer",
-    "Node.js Developer",
+    "PostgreSQL",
     "API Development",
-    "LLM Integration",
-    "Real-Time Systems",
+    "ParchiVisa",
     "Remote Backend Developer",
     "Asad Amad Sheikh",
     "Software Engineer Pakistan",
@@ -24,13 +42,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://asadamadsh.me",
     title: "Asad Amad Sheikh — Backend Engineer",
-    description: "Backend Engineer specialising in FastAPI, Node.js, and LLM integration. Building async APIs, real-time systems, and AI-powered backends. Open to remote roles globally.",
+    description,
     siteName: "Asad Amad Sheikh Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Asad Amad Sheikh — Backend Engineer",
-    description: "Backend Engineer specialising in FastAPI, Node.js, and LLM integration. Open to remote roles globally.",
+    description,
     creator: "@asadamadsheikh",
   },
   robots: {
@@ -47,10 +65,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://asadamadsh.me",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -59,65 +78,64 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        style={{
-          position: "relative",
-          minHeight: "100vh",
-        }}
-      >
-        {/* Blue orb — top left */}
+    <html lang="en" className={`${instrumentSans.variable} ${plexMono.variable}`}>
+      <body className="relative min-h-screen">
+        {/*
+          Ambient warm glows. Decorative only — kept at low alpha because the deep-teal
+          accent sits at 5.1:1 on paper, so a heavier wash would drag accent text under
+          WCAG AA. Clipped to the viewport so they can never cause horizontal scroll.
+        */}
         <div
-          style={{
-            position: "fixed",
-            top: "-100px",
-            left: "-100px",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(29,78,216,0.4) 0%, transparent 70%)",
-            filter: "blur(60px)",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        >
+          {/* orange — top left */}
+          <div
+            style={{
+              position: "absolute",
+              top: "-170px",
+              left: "-170px",
+              width: "640px",
+              height: "640px",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(251,146,60,0.15) 0%, transparent 70%)",
+              filter: "blur(70px)",
+            }}
+          />
 
-        {/* Purple orb — bottom right */}
-        <div
-          style={{
-            position: "fixed",
-            bottom: "-100px",
-            right: "-100px",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(109,40,217,0.35) 0%, transparent 70%)",
-            filter: "blur(60px)",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
+          {/* yellow — bottom right */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-190px",
+              right: "-150px",
+              width: "660px",
+              height: "660px",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(250,204,21,0.18) 0%, transparent 70%)",
+              filter: "blur(80px)",
+            }}
+          />
 
-        {/* Teal accent — mid right */}
-        <div
-          style={{
-            position: "fixed",
-            top: "40%",
-            right: "5%",
-            width: "300px",
-            height: "300px",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 70%)",
-            filter: "blur(50px)",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
+          {/* amber — mid right, smallest and faintest */}
+          <div
+            style={{
+              position: "absolute",
+              top: "36%",
+              right: "4%",
+              width: "340px",
+              height: "340px",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%)",
+              filter: "blur(60px)",
+            }}
+          />
+        </div>
 
-        <div style={{ position: "relative", zIndex: 1 }}>
+        <div className="relative z-10">
           <SmoothScroll />
           {children}
         </div>

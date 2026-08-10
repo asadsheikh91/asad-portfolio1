@@ -1,9 +1,11 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
-import Capabilities from "@/components/Capabilities";
+import Currently from "@/components/sections/Currently";
 import Projects from "@/components/sections/Projects";
-import TechStack from "@/components/TechStack";
+import HowIThink from "@/components/sections/HowIThink";
 import Experience from "@/components/Experience";
+import TechStack from "@/components/TechStack";
+import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -12,10 +14,12 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Capabilities />
+        <Currently />
         <Projects />
-        <TechStack />
+        <HowIThink />
         <Experience />
+        <TechStack />
+        <About />
         <Contact />
       </main>
     </>

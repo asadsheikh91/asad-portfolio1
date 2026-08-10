@@ -1,16 +1,38 @@
 @import "tailwindcss";
 
+/* Design tokens. Change the theme here, not in components. */
+@theme {
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-paper: #fbfaf7; /* page background */
+  --color-surface: #ffffff; /* raised cards */
+  --color-surface-alt: #f4f2ed; /* alternate / inset surfaces */
+  --color-ink: #16191d; /* primary text — 16.5:1 on paper */
+  --color-muted: #5b6470; /* secondary text — 5.7:1 on paper */
+  --color-line: #e3e0d8; /* borders and rules */
+  --color-accent: #0e7490; /* deep teal — 5.1:1 on paper */
+  --color-accent-strong: #0b5a70; /* hover / pressed */
+}
+
 html,
 body {
   height: auto;
 }
 
 body {
-  color: #f0f4ff;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #0a0f1e;
-  background-image: radial-gradient(#1e2d40 1px, transparent 1px);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
   background-size: 32px 32px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Anchor targets clear the 64px sticky nav so headings aren't hidden behind it. */
+section[id] {
+  scroll-margin-top: 5.5rem;
 }
 
 @keyframes ticker {
@@ -19,5 +41,37 @@ body {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* Fades both edges so items dissolve instead of being sliced mid-word. */
+.ticker-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    transform: none;
   }
 }
